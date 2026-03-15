@@ -1,0 +1,11 @@
+//* Sort points in clockwise
+
+
+int64_t norm2() const { return x * x + y * y; }
+
+bool half(P a) { return a.y > 0.0 || (a.y == 0.0 && a.x < 0.0); }
+void polar_sort(vector<P> &ve) // P is Point
+{
+    sort(ve.begin(), ve.end(), [&](P a, P b)
+         { return make_tuple(half(a), 0.0, a.norm2()) < make_tuple(half(b), a * b, b.norm2()); });
+}
